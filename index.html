@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.css">
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+        integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="paper container">
+        <h1>Calculator</h1>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col col-6">
+                            <input class="input-block" type="text" id="monitor"
+                                style="text-align: right;font-size:30px;" value="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 col">
+                        <input type="button" class="btn-block btn-large btn-warning" value="Del" id="del">
+                    </div>
+                    <div class="col ">
+                        <button type="button" class="btn-large btn-block" value="(">(</button>
+                    </div>
+                    <div class="col ">
+                        <button type="button" class="btn-large btn-block" value=")">)</button>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn-large" value="7">7</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-large" value="8">8</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-large" value="9">9</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-large" value="/">/</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn-large" value="4">4</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-large" value="5">5</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-large" value="6">6</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-large" value="*">x</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn-large" value="1">1</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-large" value="2">2</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-large" value="3">3</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-large" value="-">-</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 col">
+                        <button type="button" class="btn-large btn-block" value="0">0</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-large" value=".">.</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-large" value="+">+</button>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-3 col">
+                        <input type="button" class="btn-block btn-large btn-danger" value="Clear" id="clear">
+                    </div>
+                    <div class="col-3 col">
+                        <input type="button" class="btn-block btn-large btn-success" value="=" id="cal">
+                    </div>
+
+                </div>
+                <hr>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $("button").click(function () {
+                var monitor = $("#monitor").val();
+                if (monitor == "0") {
+                    monitor = "";
+                }
+                var txt = $(this).val();
+                monitor += txt;
+                $("#monitor").val(monitor);
+            });
+            $("#del").click(() => {
+                var monitor = $("#monitor").val();
+                if (monitor != "0" && monitor.length >= 1) {
+                    if (monitor.length == 1) {
+                        var monitor = $("#monitor").val("0");
+                    } else {
+
+                        monitor = monitor.substring(0, monitor.length - 1);
+                        var monitor = $("#monitor").val(monitor);
+                    }
+
+                }
+                
+            })
+            $("#clear").click(() => {
+                $("#monitor").val("0");
+            });
+            $("#cal").click(() => {
+                var monitor = $("#monitor").val();
+                var monitor = eval(monitor);
+
+                $("#monitor").val(monitor);
+            });
+
+        });
+    </script>
+</body>
+
+</html>
